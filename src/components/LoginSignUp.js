@@ -50,7 +50,7 @@ export default class LoginSignUp extends React.Component {
 
     render(){
         return(
-        <div className="page-header">
+        <div className="page-header-landing">
             <div className="login-card">
                 <Card className="card-register ml-auto mr-auto">
                     <h3 className="title mx-auto">Welcome!</h3>

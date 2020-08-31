@@ -5,7 +5,12 @@ import Landing from './containers/Landing';
 import NotFound from './containers/NotFound';
 import LoginSignUp from './components/LoginSignUp';
 import MainContent from './containers/MainContent';
+import Settings from './components/Settings'
+import UpcomingFestivals from './components/UpcomingFestivals'
 import { Switch, Route, withRouter } from 'react-router-dom';
+import SideNavigation from './components/SideNavigation';
+import HeaderLogo from './components/HeaderLogo'
+import Artists from './components/Artists'
 
 class App extends React.Component {
 
@@ -13,8 +18,7 @@ class App extends React.Component {
     user: {
       id: null,
       name: "",
-      age: "",
-      location: ""
+      username: ""
     },
     token: ""
   }
@@ -40,7 +44,15 @@ class App extends React.Component {
     return <LoginSignUp login={false} handleSignUp={this.handleSignUp}/>
   }
 
+  renderUpcomingFestivals = () => {
+    return <UpcomingFestivals />
+  }
 
+  renderSettings = () => {
+    return <Settings />
+  }
+
+  // LOGIN FUNCTIONALITY 
   handleLogin = ({username, password}) => {
     let user = {
       username: username,
@@ -88,31 +100,48 @@ class App extends React.Component {
       })
     }
 
-    handleAuthResponse = (json) => {
-      if (json.user){
-        localStorage.token = json.token
-        // this.getAllHabits()
-        console.log("success")
-        this.setState({
-          user: {
-            id: json.user.id,
-            name: json.user.name,
-            username: json.user.username
-          },
-          token: json.token
-        }, () => this.props.history.push('/home'))
-      }
+  handleAuthResponse = (json) => {
+    if (json.user){
+      localStorage.token = json.token
+      this.setState({
+        user: JSON.parse(json.user),
+        token: json.token
+      }, () => this.props.history.push('/home'))
     }
+  }
+
+  // NAVIGATION
+  handleMenuSelection = (selection) => {
+    switch (selection){
+      case 'home':
+        this.props.history.push('/home')
+      case 'artists':
+        this.props.history.push('/artists')
+      case 'upcoming':
+        this.props.history.push('/upcomingfestivals')
+      case 'settings':
+        this.props.history.push('/settings')
+      default:
+        this.props.history.push('/home')
+    }
+  }
 
   
   render(){
     return (
       <div className="App">
+        {/* render nav bar and header with conditional to determine if this is a login or home page */}
+        {this.state.token !== "" ? <HeaderLogo /> : false}
+        {this.state.token !== "" ? <SideNavigation /> : false}
       <Switch>
         <Route path="/" exact component={Landing}/>
         <Route path="/login" render={this.renderLogin}/>
         <Route path="/signup" render={this.renderSignUp}/>
         <Route path="/home" render={MainContent}/>
+        <Route path="/artists" render={Artists}/>
+        <Route path="/upcomingfestivals" render={this.renderUpcomingFestivals}/>
+        <Route path="/settings" render={this.renderSettings}/>
+
         <Route component={NotFound}/>
       </Switch>
     </div>

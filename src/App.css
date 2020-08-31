@@ -49,13 +49,9 @@ html, body {
 }
 
 #root { height: 100%; }
-.page-header { 
+.page-header-landing { 
   height: 100%; 
   background-color: #182628;
-}
-
-.landing-page {
-  height: 100%;
 }
 
 .landing-logo {
@@ -85,7 +81,6 @@ html, body {
 }
 
 /* Login */
-
 .login-card {
   position: fixed;
   width: 350px;
@@ -109,4 +104,11 @@ html, body {
 
 .register-form > button:hover {
   background-color: rgb(59,148,94) !important;
+}
+
+
+/* Home Page */
+.main-content {
+  height: 100%;
+  background-color: #65CCB8 !important;
 }

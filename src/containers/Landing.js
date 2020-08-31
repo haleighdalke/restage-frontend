@@ -7,9 +7,7 @@ const LandingPage = () => {
   let history = useHistory()
 
     return (
-      <div className="page-header">
-        <div className='landing-page'>
-            
+      <div className="page-header-landing">
             <div className="landing-line-container">
                 {/* <hr className="landing-line"/> */}
                 <Button className="login-button" onClick={() => history.push('/login')}>Login</Button>
@@ -18,7 +16,6 @@ const LandingPage = () => {
             <div className="landing-logo" >
                 <img src={logo} alt="restage"/>
             </div>
-        </div>
       </div>
   );
 }
