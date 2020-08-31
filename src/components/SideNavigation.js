@@ -1,16 +1,38 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 
-export default class SideNavigation extends React.Component {
+const SideNavigation = () => {
 
-    state = {
-        menuSelction: 'home'
+    let history = useHistory()
+
+   let handleMenuSelection = (selection) => {
+        switch (selection){
+          case 'home':
+            history.push('/home')
+            break
+          case 'artists':
+            history.push('/artists')
+            break
+          case 'upcoming':
+            history.push('/upcomingfestivals')
+            break
+          case 'settings':
+            history.push('/settings')
+            break
+          default:
+            history.push('/home')
+
+        }
     }
+  
 
-    render(){
-        return (
-            <div className="side-navigation">
+    
+    return (
+        <div className="side-navigation">
 
-            </div>
-        )
-    }
+        </div>
+    )
+    
 }
+
+export default SideNavigation

@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 const NotFound = () => {
 
     return (
-      <div className="page-header">
+      <div className="page-header-landing">
         <Jumbotron>
           <h1>404 Page Not Found!</h1><br/>
           <p>

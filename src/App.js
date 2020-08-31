@@ -131,8 +131,8 @@ class App extends React.Component {
     return (
       <div className="App">
         {/* render nav bar and header with conditional to determine if this is a login or home page */}
-        {this.state.token !== "" ? <HeaderLogo /> : false}
-        {this.state.token !== "" ? <SideNavigation /> : false}
+        {/* {this.state.token !== "" ? <HeaderLogo /> : false} */}
+        {/* {this.state.token !== "" ? <SideNavigation /> : false} */}
       <Switch>
         <Route path="/" exact component={Landing}/>
         <Route path="/login" render={this.renderLogin}/>
