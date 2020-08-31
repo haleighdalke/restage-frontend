@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  height: 100%;
+  color: #F2F2F2 !important;
 }
 
 .App-logo {
@@ -35,4 +37,76 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+/* Custom CSS */
+
+/* Landing */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#root { height: 100%; }
+.page-header { 
+  height: 100%; 
+  background-color: #182628;
+}
+
+.landing-page {
+  height: 100%;
+}
+
+.landing-logo {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
+.landing-logo img {
+  height: 150px;
+}
+
+.landing-line-container {
+  position: fixed;
+  width: 20%;
+  left: 70%;
+  right: 10%
+}
+
+.login-button{
+  margin-top: 15px;
+  margin-right: 10px;
+  background-color: #182628 !important;
+  color: #F2F2F2 !important;
+}
+
+/* Login */
+
+.login-card {
+  position: fixed;
+  width: 350px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+.card-register {
+  padding: 20px;
+  background-color: #57BA98 !important;
+  color: #F2F2F2 !important;
+}
+
+.register-form > button {
+  margin-right: 10px;
+  background-color: rgb(59,148,94, 0.5) !important;
+  border: rgb(59,148,94) !important;
+}
+
+.register-form > button:hover {
+  background-color: rgb(59,148,94) !important;
 }
