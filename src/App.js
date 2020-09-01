@@ -8,8 +8,7 @@ import MainContent from './containers/MainContent';
 import Settings from './components/Settings'
 import UpcomingFestivals from './components/UpcomingFestivals'
 import { Switch, Route, withRouter } from 'react-router-dom';
-import SideNavigation from './components/SideNavigation';
-import HeaderLogo from './components/HeaderLogo'
+import NavHeader from './components/NavHeader'
 import Artists from './components/Artists'
 
 class App extends React.Component {
@@ -111,34 +110,60 @@ class App extends React.Component {
   }
 
   // NAVIGATION
-  handleMenuSelection = (selection) => {
+  handleMenuSelection = (e, selection) => {
     switch (selection){
       case 'home':
         this.props.history.push('/home')
+        // e.target.style.color = "#fff"
+        break
       case 'artists':
         this.props.history.push('/artists')
-      case 'upcoming':
+        break
+      case 'upcomingfestivals':
         this.props.history.push('/upcomingfestivals')
+        break
       case 'settings':
         this.props.history.push('/settings')
-      default:
-        this.props.history.push('/home')
+        break
+      // default:
+      //   this.props.history.push('/home')
     }
+    this.closeNav()
   }
 
+  renderMainContent = () => {
+    console.log(this.props.history)
+    return <MainContent />
+  }
+
+  renderArtists = () => {
+    return <Artists />
+  }
+
+  /* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
+  openNav = () => {
+    document.getElementById("mySidebar").style.width = "28%"
+    document.getElementById("main").style.marginLeft = "28%"
+    document.querySelector(".openbtn").style.display = "none"
+  }
+
+  /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+  closeNav = () => {
+    document.getElementById("mySidebar").style.width = "0"
+    document.getElementById("main").style.marginLeft = "0"
+    document.querySelector(".openbtn").style.display = "inline-block"
+  }
   
   render(){
     return (
       <div className="App">
-        {/* render nav bar and header with conditional to determine if this is a login or home page */}
-        {/* {this.state.token !== "" ? <HeaderLogo /> : false} */}
-        {/* {this.state.token !== "" ? <SideNavigation /> : false} */}
+        {this.state.token !== "" ? <NavHeader handleMenuSelection={this.handleMenuSelection} openNav={this.openNav} closeNav={this.closeNav}/> : false}
       <Switch>
         <Route path="/" exact component={Landing}/>
         <Route path="/login" render={this.renderLogin}/>
         <Route path="/signup" render={this.renderSignUp}/>
-        <Route path="/home" render={MainContent}/>
-        <Route path="/artists" render={Artists}/>
+        <Route path="/home" render={this.renderMainContent}/>
+        <Route path="/artists" render={this.renderArtists}/>
         <Route path="/upcomingfestivals" render={this.renderUpcomingFestivals}/>
         <Route path="/settings" render={this.renderSettings}/>
 
