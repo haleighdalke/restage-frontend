@@ -28,6 +28,9 @@ class App extends React.Component {
   }
 
   componentDidMount(){
+    this.getAllFestivals()
+    this.getAllArtists()
+    this.getAllPieces()
     if(localStorage.token){
       fetch('http://localhost:3000/persist',{
       headers: {
@@ -37,9 +40,6 @@ class App extends React.Component {
       .then(res => res.json())
       .then(json => {
         this.handleAuthResponse(json)
-        this.getAllFestivals()
-        this.getAllArtists()
-        this.getAllPieces()
       })
     }
   }
