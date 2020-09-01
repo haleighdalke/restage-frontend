@@ -4,12 +4,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Landing from './containers/Landing';
 import NotFound from './containers/NotFound';
 import LoginSignUp from './components/LoginSignUp';
-import MainContent from './containers/MainContent';
+import HomePage from './components/HomePage';
 import Settings from './components/Settings'
 import UpcomingFestivals from './components/UpcomingFestivals'
 import { Switch, Route, withRouter } from 'react-router-dom';
 import NavHeader from './components/NavHeader'
 import Artists from './components/Artists'
+import Festival from './components/Festival'
 
 class App extends React.Component {
 
@@ -19,7 +20,11 @@ class App extends React.Component {
       name: "",
       username: ""
     },
-    token: ""
+    token: "",
+    festivals: [],
+    currentFestival: null,
+    artists: [],
+    pieces: []
   }
 
   componentDidMount(){
@@ -30,7 +35,12 @@ class App extends React.Component {
       }
       })
       .then(res => res.json())
-      .then(json => this.handleAuthResponse(json))
+      .then(json => {
+        this.handleAuthResponse(json)
+        this.getAllFestivals()
+        this.getAllArtists()
+        this.getAllPieces()
+      })
     }
   }
 
@@ -131,23 +141,67 @@ class App extends React.Component {
     this.closeNav()
   }
 
-  renderMainContent = () => {
-    console.log(this.props.history)
-    return <MainContent />
+  renderHomePage = () => {
+    return <HomePage festivals={this.state.festivals} viewFestival={this.viewFestival}/>
   }
 
   renderArtists = () => {
     return <Artists />
   }
 
-  /* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
+  renderFestival = () => {
+    return <Festival festival={this.state.currentFestival} />
+  }
+
+  // FETCHES
+  getAllFestivals = () => {
+    fetch('http://localhost:3000/festivals')
+    .then(res => res.json())
+    .then(json => {
+      this.setState({
+        festivals: json
+      })
+    })
+  }
+
+  getAllArtists = () => {
+    fetch('http://localhost:3000/artists')
+    .then(res => res.json())
+    .then(json => {
+      this.setState({
+        artists: json
+      })    
+    })
+  }
+
+  getAllPieces = () => {
+    fetch('http://localhost:3000/pieces')
+    .then(res => res.json())
+    .then(json => {
+      this.setState({
+        pieces: json
+      })
+    })
+  }
+
+  // ADDITIONAL METHODS
+
+  viewFestival = (festival) => {
+    this.setState({
+      currentFestival: festival
+    })
+    // document.querySelector(".home-page").innerHTML = ""
+    this.props.history.push(`/festivals/${festival.id}`)
+  }
+
+  // Set the width of the sidebar to 250px and the left margin of the page content to 250px
   openNav = () => {
     document.getElementById("mySidebar").style.width = "28%"
     document.getElementById("main").style.marginLeft = "28%"
     document.querySelector(".openbtn").style.display = "none"
   }
 
-  /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+  // Set the width of the sidebar to 0 and the left margin of the page content to 0
   closeNav = () => {
     document.getElementById("mySidebar").style.width = "0"
     document.getElementById("main").style.marginLeft = "0"
@@ -162,11 +216,11 @@ class App extends React.Component {
         <Route path="/" exact component={Landing}/>
         <Route path="/login" render={this.renderLogin}/>
         <Route path="/signup" render={this.renderSignUp}/>
-        <Route path="/home" render={this.renderMainContent}/>
+        <Route path="/home" render={this.renderHomePage}/>
         <Route path="/artists" render={this.renderArtists}/>
         <Route path="/upcomingfestivals" render={this.renderUpcomingFestivals}/>
         <Route path="/settings" render={this.renderSettings}/>
-
+        <Route path="/festivals" render={this.renderFestival} />
         <Route component={NotFound}/>
       </Switch>
     </div>
