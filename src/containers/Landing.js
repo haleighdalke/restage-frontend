@@ -4,6 +4,8 @@ import { useHistory } from 'react-router-dom'
 import logo from '../assets/img/restage_logo.png'
 // import {google} from 'googleapis'
 
+// const {google} = require('googleapis');
+
 const LandingPage = () => {
   let history = useHistory()
 
@@ -34,7 +36,7 @@ const LandingPage = () => {
   // // const apis = google.getSupportedAPIs();
   // console.log(google)
 
-// const {google} = require('googleapis');
+
 // const path = require('path');
 // const {authenticate} = require('@google-cloud/local-auth');
 
