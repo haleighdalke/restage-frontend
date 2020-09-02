@@ -24,7 +24,7 @@ const HomePage = ({festivals, viewFestival}) => {
 
   return (
       <div className="home-page">
-        <Carousel className="festivals-carousel">
+        <Carousel className="festivals-carousel" controls={false} >
           {renderCarouselItems()}
         </Carousel>
       </div>

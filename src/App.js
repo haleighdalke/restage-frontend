@@ -146,7 +146,7 @@ class App extends React.Component {
   }
 
   renderArtists = () => {
-    return <Artists />
+    return <Artists artists={this.state.artists}/>
   }
 
   renderFestival = () => {
