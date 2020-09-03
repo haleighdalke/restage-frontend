@@ -54,11 +54,23 @@ class App extends React.Component {
   }
 
   renderUpcomingFestivals = () => {
-    return <UpcomingFestivals />
+    return <UpcomingFestivals festivals={this.state.festivals} />
   }
 
   renderSettings = () => {
-    return <Settings />
+    return <Settings user={this.state.user} updateUserInfo={this.updateUserInfo}/>
+  }
+
+  renderHomePage = () => {
+    return <HomePage festivals={this.state.festivals} viewFestival={this.viewFestival}/>
+  }
+
+  renderArtists = () => {
+    return <Artists artists={this.state.artists}/>
+  }
+
+  renderFestival = () => {
+    return <Festival festival={this.state.currentFestival} />
   }
 
   // LOGIN FUNCTIONALITY 
@@ -141,18 +153,6 @@ class App extends React.Component {
     this.closeNav()
   }
 
-  renderHomePage = () => {
-    return <HomePage festivals={this.state.festivals} viewFestival={this.viewFestival}/>
-  }
-
-  renderArtists = () => {
-    return <Artists artists={this.state.artists}/>
-  }
-
-  renderFestival = () => {
-    return <Festival festival={this.state.currentFestival} />
-  }
-
   // FETCHES
   getAllFestivals = () => {
     fetch('http://localhost:3000/festivals')
@@ -185,7 +185,6 @@ class App extends React.Component {
   }
 
   // ADDITIONAL METHODS
-
   viewFestival = (festival) => {
     this.setState({
       currentFestival: festival
@@ -206,6 +205,23 @@ class App extends React.Component {
     document.getElementById("mySidebar").style.width = "0"
     document.getElementById("main").style.marginLeft = "0"
     document.querySelector(".openbtn").style.display = "inline-block"
+  }
+
+  updateUserInfo = (user) => {
+    fetch(`http://localhost:3000/users/${user.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })
+    .then(res => res.json())
+    .then(json => {
+      this.setState({
+        user: json
+      })
+      alert("User Information Succesfully Updated")
+    })
   }
   
   render(){

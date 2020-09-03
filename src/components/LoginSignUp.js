@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, Form, Input, Container, Col } from "reactstrap";
+import { Button, Card, Form, Input} from "reactstrap";
 
 export default class LoginSignUp extends React.Component {
     state = {

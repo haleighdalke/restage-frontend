@@ -283,7 +283,7 @@ html, body {
   cursor: pointer;
   opacity: 1;
   filter: none;
-  transition: .5s ease;
+  transition: 2.5s ease;
   color: rgb(242,242,242,0);
   text-shadow: 2px 2px rgb(242,242,242,0);
 }
@@ -295,4 +295,84 @@ html, body {
   margin-right: 30%;
   padding-top: 20%;
   align-items: center;
+}
+
+/* Settings Page  */
+
+.settings {
+  height: 100%;
+  background-color: #65CCB8;
+}
+
+.settings-form {
+  width: 60%;
+  height: 80%;
+  margin-left: 20%;
+  margin-right: 20%;
+  background-color: rgb(59,148,94, 0.5);
+  padding: 75px;
+}
+
+.settings-form > form {
+  text-align: left;
+}
+
+.settings-form > .form-control {
+  background-color: rgb(59,148,94) !important;
+}
+
+button.btn-secondary {
+  margin-right: 10px;
+  background-color: rgb(59,148,94, 0.5) !important;
+  border: rgb(59,148,94) !important;
+}
+
+button.btn-secondary:hover {
+  background-color: rgb(59,148,94) !important;
+}
+
+.settings-form > input {
+  background-color: rgb(59,148,94, 0.5);
+  border-color: rgb(59,148,94);
+}
+
+/* Upcoming Festivals Page  */
+
+.upcoming-festivals {
+  height: 100%;
+  background-color: #65CCB8;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.upcoming-festival-item {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  display: flex;
+  padding: 20px;
+}
+
+.upcoming-festival-cover-photo {
+  width: 60% !important;
+  padding: 20px;
+  
+}
+
+.upcoming-festival-description {
+  width: 40% !important;
+  padding: 20px;
+}
+
+.upcoming-festival-cover-photo > img {
+  max-width: 600px;
+}
+
+.festival-text {
+  border: medium solid #F2F2F2;
+  height: 80%;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  padding: 30px;
+  background-color: rgb(242,242,242,0.05);
 }
