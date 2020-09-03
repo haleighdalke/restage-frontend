@@ -13,6 +13,7 @@ export default class Settings extends React.Component {
             <Form onSubmit={(e) => this.handleSumbit(e)}>
                 <label>Your Name</label>
                 <Input name="name" placeholder={this.props.user.name} type="text" onChange={this.handleOnChange}/>
+                <br></br>
                 <label>Username</label>
                 <Input name="username" placeholder={this.props.user.username} type="text" onChange={this.handleOnChange}/>
                 <br></br>
@@ -45,6 +46,11 @@ export default class Settings extends React.Component {
                     <h1>Edit User Info</h1>
                     <br></br>
                     {this.generateForm()}
+                    <br></br>
+                    <div className="settings-register">
+                        <Button className="btn-round" variant='secondary' type="submit">Register as an Artist</Button>
+                        <Button className="btn-round" variant='secondary' type="submit">Resister as an Admin</Button>
+                    </div>
                 </div>
                 
             </div>

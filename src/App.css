@@ -1,11 +1,3 @@
-body {
-  font-family: 'Fira Sans', sans-serif !important;
-  height: 100%
-}
-
-html {
-  background-color: #65CCB8;
-}
 
 .App {
   text-align: center;
@@ -53,8 +45,11 @@ html {
 
 /* Landing */
 html, body {
-  height: 100%;
+  font-family: 'Fira Sans', sans-serif !important;
+  height: 80%;
   margin: 0;
+  background-color: #65CCB8;
+
 }
 
 #root { height: 100%; }
@@ -306,7 +301,7 @@ html, body {
 
 .settings-form {
   width: 60%;
-  height: 80%;
+  height: 100%;
   margin-left: 20%;
   margin-right: 20%;
   background-color: rgb(59,148,94, 0.5);
@@ -334,6 +329,10 @@ button.btn-secondary:hover {
 .settings-form > input {
   background-color: rgb(59,148,94, 0.5);
   border-color: rgb(59,148,94);
+}
+
+.settings-register{
+  
 }
 
 /* Upcoming Festivals Page  */
