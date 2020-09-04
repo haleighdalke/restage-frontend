@@ -22,6 +22,8 @@ class App extends React.Component {
       name: "",
       username: ""
     },
+    artist: {},
+    admin: {},
     token: "",
     festivals: [],
     currentFestival: null,
@@ -60,7 +62,7 @@ class App extends React.Component {
   }
 
   renderSettings = () => {
-    return <Settings user={this.state.user} updateUserInfo={this.updateUserInfo} handleMenuSelection={this.handleMenuSelection}/>
+    return <Settings user={this.state.user} artist={this.state.artist} admin={this.state.admin} updateUserInfo={this.updateUserInfo} handleMenuSelection={this.handleMenuSelection} handleLogout={this.handleLogout}/>
   }
 
   renderHomePage = () => {
@@ -270,7 +272,23 @@ class App extends React.Component {
     })
     .then(res => res.json())
     .then(json => {
-      console.log(json)
+      if (json.id) {
+        this.setState({
+          admin: json
+        })
+      } else {
+        alert("This user is already associated with an Admin account.")
+      }
+    })
+  }
+
+  handleLogout = () => {
+    localStorage.clear()
+    window.location = "/"
+    this.setState({
+      user: {},
+      artist: {},
+      admin: {}
     })
   }
   

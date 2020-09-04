@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, Input} from "reactstrap";
+import { Button, Form, Input, ButtonToggle} from "reactstrap";
 
 export default class Settings extends React.Component {
 
@@ -21,6 +21,15 @@ export default class Settings extends React.Component {
             </Form>
         )
     }
+
+    renderArtistButton = (artistControl="Register as an Artist") => {
+        return <Button className="btn-round" variant='secondary' type="submit" onClick={(e) => this.props.handleMenuSelection(e, 'registerartist')}>{artistControl}</Button>
+    }
+
+    renderAdminButton = (adminControl="Register as an Admin") => {
+            return <Button className="btn-round" variant='secondary' type="submit" onClick={(e) => this.props.handleMenuSelection(e, 'registeradmin')}>{adminControl}</Button>
+    }
+
 
     handleOnChange = (e) => {
         console.log(e.target)
@@ -48,9 +57,11 @@ export default class Settings extends React.Component {
                     {this.generateForm()}
                     <br></br>
                     <div className="settings-register">
-                        <Button className="btn-round" variant='secondary' type="submit" onClick={(e) => this.props.handleMenuSelection(e, 'registerartist')}>Register as an Artist</Button>
-                        <Button className="btn-round" variant='secondary' type="submit" onClick={(e) => this.props.handleMenuSelection(e, 'registeradmin')}>Resister as an Admin</Button>
+                        {Object.keys(this.props.artist).length ? this.renderArtistButton("Update Artist Info") : this.renderArtistButton()}
+                        {Object.keys(this.props.admin).length ? this.renderAdminButton("Update Admin Info") : this.renderAdminButton()}
                     </div>
+                    <br></br>
+                    <Button className="btn-round" variant='secondary' onClick={this.props.handleLogout}>Logout</Button>
                 </div>
                 
             </div>
