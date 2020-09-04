@@ -1,11 +1,14 @@
 import React from 'react'
 import { Button, Form, Input} from "reactstrap";
 
-export default class Settings extends React.Component {
+export default class RegisterAdmin extends React.Component {
 
     state = {
+        user_id: this.props.user.id,
         name: this.props.user.name,
-        username: this.props.user.username
+        username: this.props.user.username,
+        title: "",
+        authorization_code: ""
     }
 
     generateForm = () => {
@@ -17,7 +20,14 @@ export default class Settings extends React.Component {
                 <label>Username</label>
                 <Input name="username" placeholder={this.props.user.username} type="text" maxlength="20" onChange={this.handleOnChange}/>
                 <br></br>
-                <Button className="btn-round" variant='secondary' type="submit">Update</Button>
+                <label>Position Title</label>
+                <Input name="title" placeholder="Position Title" type="text" maxlength="100" onChange={this.handleOnChange}/>
+                <br></br>
+                <label>Authorization Code</label>
+                <Input name="authorization_code" placeholder="Authorization Code" type="password" maxlength="100" onChange={this.handleOnChange}/>
+                <br></br>
+                <Button className="btn-round" variant='secondary' type="submit">Submit</Button>
+                <Button className="btn-round" variant='secondary' onClick={(e) => this.props.handleMenuSelection(e, 'settings')}>Back</Button>
             </Form>
         )
     }
@@ -31,11 +41,13 @@ export default class Settings extends React.Component {
 
     handleSumbit = (e) => {
         e.preventDefault()
-        let user = {
-            ...this.state,
-            id: this.props.user.id
+        let {user_id, title, authorization_code} = this.state
+        let admin = {
+            user_id,
+            title,
+            authorization_code
         }
-        this.props.updateUserInfo(user)
+        this.props.createAdmin(admin)
     }
 
     render() {
@@ -43,14 +55,9 @@ export default class Settings extends React.Component {
             <div className="settings">
                 
                 <div className="settings-form">
-                    <h1>Edit User Info</h1>
+                    <h1>Register as an Admin</h1>
                     <br></br>
                     {this.generateForm()}
-                    <br></br>
-                    <div className="settings-register">
-                        <Button className="btn-round" variant='secondary' type="submit" onClick={(e) => this.props.handleMenuSelection(e, 'registerartist')}>Register as an Artist</Button>
-                        <Button className="btn-round" variant='secondary' type="submit" onClick={(e) => this.props.handleMenuSelection(e, 'registeradmin')}>Resister as an Admin</Button>
-                    </div>
                 </div>
                 
             </div>

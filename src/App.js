@@ -11,6 +11,8 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import NavHeader from './components/NavHeader'
 import Artists from './components/Artists'
 import Festival from './components/Festival'
+import RegisterArtist from './components/RegisterArtist'
+import RegisterAdmin from './components/RegisterAdmin'
 
 class App extends React.Component {
 
@@ -58,7 +60,7 @@ class App extends React.Component {
   }
 
   renderSettings = () => {
-    return <Settings user={this.state.user} updateUserInfo={this.updateUserInfo}/>
+    return <Settings user={this.state.user} updateUserInfo={this.updateUserInfo} handleMenuSelection={this.handleMenuSelection}/>
   }
 
   renderHomePage = () => {
@@ -71,6 +73,14 @@ class App extends React.Component {
 
   renderFestival = () => {
     return <Festival festival={this.state.currentFestival} />
+  }
+
+  renderRegisterArtist = () => {
+    return <RegisterArtist user={this.state.user} createArtist={this.createArtist} handleMenuSelection={this.handleMenuSelection}/>
+  }
+
+  renderRegisterAdmin = () => {
+    return <RegisterAdmin user={this.state.user} createAdmin={this.createAdmin} handleMenuSelection={this.handleMenuSelection}/>
   }
 
   // LOGIN FUNCTIONALITY 
@@ -147,6 +157,13 @@ class App extends React.Component {
       case 'settings':
         this.props.history.push('/settings')
         break
+      case 'registerartist':
+        this.props.history.push('/registerartist')
+        break
+      case 'registeradmin':
+        this.props.history.push('/registeradmin')
+        break
+      // end
       // default:
       //   this.props.history.push('/home')
     }
@@ -223,6 +240,39 @@ class App extends React.Component {
       alert("User Information Succesfully Updated")
     })
   }
+
+  createArtist = (artist) => {
+    // fetch and handle bad data error
+    // update state with information and "artist=true" ?
+    console.log(artist)
+    fetch('http://localhost:3000/artists', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(artist)
+    })
+    .then(res => res.json())
+    .then(json => {
+      console.log(json)
+    })
+
+  }
+
+  createAdmin = (admin) => {
+    console.log(admin)
+    fetch('http://localhost:3000/admins', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(admin)
+    })
+    .then(res => res.json())
+    .then(json => {
+      console.log(json)
+    })
+  }
   
   render(){
     return (
@@ -237,6 +287,8 @@ class App extends React.Component {
         <Route path="/upcomingfestivals" render={this.renderUpcomingFestivals}/>
         <Route path="/settings" render={this.renderSettings}/>
         <Route path="/festivals" render={this.renderFestival} />
+        <Route path="/registerartist" render={this.renderRegisterArtist} />
+        <Route path="/registeradmin" render={this.renderRegisterAdmin} />
         <Route component={NotFound}/>
       </Switch>
     </div>
