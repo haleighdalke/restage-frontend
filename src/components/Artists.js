@@ -7,7 +7,7 @@ export default class Artists extends React.Component {
             return (
                 <div className="hexagon" key={artist.id}>
                     <div className="hexagon-inside">
-                        <div className="hexagon-image" style={{backgroundImage: `url(${artist.photo})`}}>
+                        <div className="hexagon-image" style={{backgroundImage: `url(${artist.photo})`}} onClick={() => this.props.viewArtist(artist)}>
                             <h3 className="artist-text">{artist.company_title}</h3>
                             <p>{artist.description}</p>
                         </div>

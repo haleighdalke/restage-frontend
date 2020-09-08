@@ -278,7 +278,7 @@ html, body {
   cursor: pointer;
   opacity: 1;
   filter: none;
-  transition: 2.5s ease;
+  transition: 1s ease;
   color: rgb(242,242,242,0);
   text-shadow: 2px 2px rgb(242,242,242,0);
 }
@@ -374,4 +374,14 @@ button.btn-secondary:hover {
   margin-bottom: 10%;
   padding: 30px;
   background-color: rgb(242,242,242,0.05);
+}
+
+/* View One Artist  */
+
+
+.view-artist {
+  margin: 20px;
+}
+
+.artist-photo {
 }

@@ -13,6 +13,7 @@ import Artists from './components/Artists'
 import Festival from './components/Festival'
 import RegisterArtist from './components/RegisterArtist'
 import RegisterAdmin from './components/RegisterAdmin'
+import ViewArtist from './components/ViewArtist';
 
 class App extends React.Component {
 
@@ -70,7 +71,7 @@ class App extends React.Component {
   }
 
   renderArtists = () => {
-    return <Artists artists={this.state.artists}/>
+    return <Artists artists={this.state.artists} viewArtist={this.viewArtist} handleMenuSelection={this.handleMenuSelection}/>
   }
 
   renderFestival = () => {
@@ -83,6 +84,25 @@ class App extends React.Component {
 
   renderRegisterAdmin = () => {
     return <RegisterAdmin user={this.state.user} createAdmin={this.createAdmin} handleMenuSelection={this.handleMenuSelection}/>
+  }
+
+  renderViewArtist = () => {
+    return <ViewArtist artist={this.state.currentViewArtist} festivals={this.state.festivals} pieces={this.state.pieces}/>
+  }
+
+  viewArtist = (artist) => {
+    this.setState({
+      currentViewArtist: artist
+    })
+    this.props.history.push(`/artists/${artist.id}`)
+  }
+
+  viewFestival = (festival) => {
+    this.setState({
+      currentFestival: festival
+    })
+    // document.querySelector(".home-page").innerHTML = ""
+    this.props.history.push(`/festivals/${festival.id}`)
   }
 
   // LOGIN FUNCTIONALITY 
@@ -210,13 +230,6 @@ class App extends React.Component {
   }
 
   // ADDITIONAL METHODS
-  viewFestival = (festival) => {
-    this.setState({
-      currentFestival: festival
-    })
-    // document.querySelector(".home-page").innerHTML = ""
-    this.props.history.push(`/festivals/${festival.id}`)
-  }
 
   // Set the width of the sidebar to 250px and the left margin of the page content to 250px
   openNav = () => {
@@ -345,12 +358,13 @@ class App extends React.Component {
         <Route path="/login" render={this.renderLogin}/>
         <Route path="/signup" render={this.renderSignUp}/>
         <Route path="/home" render={this.renderHomePage}/>
-        <Route path="/artists" render={this.renderArtists}/>
+        <Route path="/artists" exact render={this.renderArtists}/>
         <Route path="/upcomingfestivals" render={this.renderUpcomingFestivals}/>
         <Route path="/settings" render={this.renderSettings}/>
         <Route path="/festivals" render={this.renderFestival} />
         <Route path="/registerartist" render={this.renderRegisterArtist} />
         <Route path="/registeradmin" render={this.renderRegisterAdmin} />
+        <Route path="/artists/" render={this.renderViewArtist} />
         <Route component={NotFound}/>
       </Switch>
     </div>
