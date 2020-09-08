@@ -27,7 +27,7 @@ export default class RegisterArtist extends React.Component {
                 <Input name="bio" value={this.state.bio ? this.state.bio : ""} placeholder="Bio (500 characters or less)" type="text" maxlength="500" onChange={this.handleOnChange}/>
                 <br></br>
                 <label>Headshot</label>
-                <Input name="headshot" value={this.state.headshot ? this.state.headshot : ""} placeholder="Attach Your Headshot" type="file" onChange={this.handleOnChange}/>
+                <Input name="headshot" placeholder="Attach Your Headshot" type="file" onChange={this.handleOnChange}/>
               
                 {/* 
                 <label>Headshot</label>
@@ -42,9 +42,22 @@ export default class RegisterArtist extends React.Component {
     }
 
     handleOnChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
+        // debugger
+        console.log("Name: ", e.target.name)
+        console.log("value: ", e.target.value)
+        console.log("files: ", e.target.files)
+
+        if(e.target.files){
+            this.setState({
+                [e.target.name]: e.target.files[0]
+            })
+        }
+        else {
+            console.log(e.target.name)
+            this.setState({
+                [e.target.name]: e.target.value
+            })
+        }
     }
 
     handleSumbit = (e) => {

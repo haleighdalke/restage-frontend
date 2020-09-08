@@ -252,16 +252,17 @@ class App extends React.Component {
   createArtist = (e, artist, headshot) => {
     // fetch and handle bad data error
     // update state with information and "artist=true" ?
-    debugger
+
+    console.log(headshot)
 
     const formData = new FormData();
-    formData.append("artist", JSON.stringify(artist))
-    formData.append("headshot", e.target[4].value)
+    for (let key in artist) {
+      formData.append(key, artist[key])
+    }
+    formData.append("headshot", headshot)
 
     fetch('http://localhost:3000/artists', {
       method: 'POST',
-      headers: {
-      },
       body: formData
     })
     .then(res => res.json())
