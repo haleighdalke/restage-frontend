@@ -249,16 +249,20 @@ class App extends React.Component {
     })
   }
 
-  createArtist = (artist) => {
+  createArtist = (e, artist, headshot) => {
     // fetch and handle bad data error
     // update state with information and "artist=true" ?
+    debugger
+
+    const formData = new FormData();
+    formData.append("artist", JSON.stringify(artist))
+    formData.append("headshot", e.target[4].value)
 
     fetch('http://localhost:3000/artists', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(artist)
+      body: formData
     })
     .then(res => res.json())
     .then(json => {

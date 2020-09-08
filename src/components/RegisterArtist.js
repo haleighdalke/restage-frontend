@@ -27,7 +27,13 @@ export default class RegisterArtist extends React.Component {
                 <Input name="bio" value={this.state.bio ? this.state.bio : ""} placeholder="Bio (500 characters or less)" type="text" maxlength="500" onChange={this.handleOnChange}/>
                 <br></br>
                 <label>Headshot</label>
+                <Input name="headshot" value={this.state.headshot ? this.state.headshot : ""} placeholder="Attach Your Headshot" type="file" onChange={this.handleOnChange}/>
+              
+                {/* 
+                <label>Headshot</label>
                 <Input name="photo" value={this.state.photo ? this.state.photo : ""} placeholder="Attach Your Headshot" type="text" onChange={this.handleOnChange}/>
+                 */}
+
                 <br></br>
                 <Button className="btn-round" variant='secondary' type="submit">Submit</Button>
                 <Button className="btn-round" variant='secondary' onClick={(e) => this.props.handleMenuSelection(e, 'settings')}>Back</Button>
@@ -46,15 +52,14 @@ export default class RegisterArtist extends React.Component {
 
         // check to be sure none are empty
         // if empty, alert and don't fetch
-        if(this.state.user_id && this.state.company_title && this.state.bio && this.state.photo){
-            let {user_id, company_title, bio, photo} = this.state
+        if(this.state.user_id && this.state.company_title && this.state.bio && this.state.headshot){
+            let {user_id, company_title, bio, headshot} = this.state
             let artist = {
                 user_id,
                 company_title,
-                bio,
-                photo
+                bio
             }
-            this.props.createArtist(artist)
+            this.props.createArtist(e, artist, headshot)
         }
         else{
             alert("Must include company title, bio, and headshot.")
@@ -65,7 +70,7 @@ export default class RegisterArtist extends React.Component {
         e.preventDefault()
         // check to be sure none are empty
         // if empty, alert and don't fetch
-        if(this.state.user_id && this.state.company_title && this.state.bio && this.state.photo){
+        if(this.state.user_id && this.state.company_title && this.state.bio && this.state.headshot){
                 let artist = {
                 ...this.state,
                 id: this.props.artist.id
