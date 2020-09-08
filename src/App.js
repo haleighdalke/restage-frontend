@@ -78,7 +78,7 @@ class App extends React.Component {
   }
 
   renderRegisterArtist = () => {
-    return <RegisterArtist user={this.state.user} createArtist={this.createArtist} handleMenuSelection={this.handleMenuSelection}/>
+    return <RegisterArtist user={this.state.user} artist={this.state.artist} createArtist={this.createArtist} updateArtist={this.updateArtist} handleMenuSelection={this.handleMenuSelection}/>
   }
 
   renderRegisterAdmin = () => {
@@ -136,6 +136,12 @@ class App extends React.Component {
   handleAuthResponse = (json) => {
     if (json.user){
       localStorage.token = json.token
+      if (json.admin){
+        this.setState({admin: JSON.parse(json.admin)})
+      }
+      if (json.artist){
+        this.setState({artist: JSON.parse(json.artist)})
+      }
       this.setState({
         user: JSON.parse(json.user),
         token: json.token
@@ -246,7 +252,7 @@ class App extends React.Component {
   createArtist = (artist) => {
     // fetch and handle bad data error
     // update state with information and "artist=true" ?
-    console.log(artist)
+
     fetch('http://localhost:3000/artists', {
       method: 'POST',
       headers: {
@@ -256,7 +262,12 @@ class App extends React.Component {
     })
     .then(res => res.json())
     .then(json => {
-      console.log(json)
+      this.setState({
+        artist: json,
+        artists: this.state.artists.push(json)
+      })
+      this.props.history.push('/settings')
+      alert("Successfully registered as an Artist")
     })
 
   }
@@ -276,9 +287,38 @@ class App extends React.Component {
         this.setState({
           admin: json
         })
+        this.props.history.push('/settings')
+        alert("Successfully registered as an Admin.")
       } else {
         alert("This user is already associated with an Admin account.")
       }
+    })
+  }
+
+  updateArtist = (artist) => {
+
+    let artists = this.state.artists.map(eachArtist => {
+      if(eachArtist.id == artist.id){
+        return artist
+      }
+      return eachArtist
+    })
+    this.setState({
+      artists: artists,
+      artist: artist
+    })
+
+    fetch(`http://localhost:3000/artists/${artist.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(artist)
+    })
+    .then(res => res.json())
+    .then(json => {
+      this.props.history.push('/settings')
+      alert("Artist Information Succesfully Updated")
     })
   }
 

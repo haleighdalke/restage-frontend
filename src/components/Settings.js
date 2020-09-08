@@ -12,10 +12,10 @@ export default class Settings extends React.Component {
         return(
             <Form onSubmit={(e) => this.handleSumbit(e)}>
                 <label>Your Name</label>
-                <Input name="name" placeholder={this.props.user.name} type="text" onChange={this.handleOnChange}/>
+                <Input name="name" placeholder="Your Name" value={this.state.name} type="text" onChange={this.handleOnChange}/>
                 <br></br>
                 <label>Username</label>
-                <Input name="username" placeholder={this.props.user.username} type="text" maxlength="20" onChange={this.handleOnChange}/>
+                <Input name="username" placeholder="Username" value={this.state.username} type="text" maxlength="20" onChange={this.handleOnChange}/>
                 <br></br>
                 <Button className="btn-round" variant='secondary' type="submit">Update</Button>
             </Form>

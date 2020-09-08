@@ -15,10 +15,10 @@ export default class RegisterAdmin extends React.Component {
         return(
             <Form onSubmit={(e) => this.handleSumbit(e)}>
                 <label>Your Name</label>
-                <Input name="name" placeholder={this.props.user.name} type="text" onChange={this.handleOnChange}/>
+                <Input name="name" placeholder="Your Name" value={this.state.name} type="text" onChange={this.handleOnChange}/>
                 <br></br>
                 <label>Username</label>
-                <Input name="username" placeholder={this.props.user.username} type="text" maxlength="20" onChange={this.handleOnChange}/>
+                <Input name="username" placeholder="Username" value={this.state.username} type="text" maxlength="20" onChange={this.handleOnChange}/>
                 <br></br>
                 <label>Position Title</label>
                 <Input name="title" placeholder="Position Title" type="text" maxlength="100" onChange={this.handleOnChange}/>
