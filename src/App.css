@@ -220,6 +220,15 @@ html, body {
   background-color: #65CCB8 !important;
 }
 
+.piece-information {
+  width: 60%;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  padding: 50px;
+  border: medium solid #F2F2F2;
+}
 
 /* Artists Page */
 .artists {

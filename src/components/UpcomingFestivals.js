@@ -23,7 +23,7 @@ export default class UpcomingFestivals extends React.Component {
                                     <h6>{festival.description}</h6>
                                     <h6>Coming {festival.release_date}</h6>
                                     <br></br>
-                                    <Button className="btn-round" variant='secondary' type="submit" style={{alignSelf: "right"}}>Apply Here</Button>
+                                    {!this.props.artist ? false : <Button className="btn-round" variant='secondary' type="submit" style={{alignSelf: "right"}} id={festival.id} onClick={(e) => this.props.handleViewFestival(e, festival)}>Apply Here</Button>}
                                 </div>   
                             </div>  
                         </div>
@@ -38,7 +38,7 @@ export default class UpcomingFestivals extends React.Component {
                                     <h6>{festival.description}</h6>
                                     <h6>Coming {festival.release_date}</h6>
                                     <br></br>
-                                    <Button className="btn-round" variant='secondary' type="submit" style={{alignSelf: "right"}}>Apply Here</Button>
+                                    {!this.props.artist ? false : <Button className="btn-round" variant='secondary' type="submit" style={{alignSelf: "right"}} id={festival.id} onClick={(e) => this.props.handleViewFestival(e, festival)}>Apply Here</Button>}
                                 </div>   
                             </div>
                             <div className="upcoming-festival-cover-photo">

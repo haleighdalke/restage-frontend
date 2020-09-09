@@ -14,6 +14,7 @@ import Festival from './components/Festival'
 import RegisterArtist from './components/RegisterArtist'
 import RegisterAdmin from './components/RegisterAdmin'
 import ViewArtist from './components/ViewArtist';
+import FestivalApplication from './components/FestivalApplication';
 
 class App extends React.Component {
 
@@ -59,7 +60,7 @@ class App extends React.Component {
   }
 
   renderUpcomingFestivals = () => {
-    return <UpcomingFestivals festivals={this.state.festivals} />
+    return <UpcomingFestivals festivals={this.state.festivals} handleViewFestival={this.handleViewFestival} artist={this.state.artist}/>
   }
 
   renderSettings = () => {
@@ -88,6 +89,10 @@ class App extends React.Component {
 
   renderViewArtist = () => {
     return <ViewArtist artist={this.state.currentViewArtist} festivals={this.state.festivals} pieces={this.state.pieces} handleMenuSelection={this.handleMenuSelection}/>
+  }
+
+  renderFestivalApplication = () => {
+    return <FestivalApplication artist={this.state.artist} festival={this.state.currentViewFestival} createPiece={this.createPiece} handleMenuSelection={this.handleMenuSelection}/>
   }
 
   viewArtist = (artist) => {
@@ -192,6 +197,9 @@ class App extends React.Component {
         break
       case 'registeradmin':
         this.props.history.push('/registeradmin')
+        break
+      case 'festivalapplication':
+        this.props.history.push('/festivalapplication')
         break
       // end
       // default:
@@ -331,7 +339,6 @@ class App extends React.Component {
   }
 
   updateArtist = (artist) => {
-
     let artists = this.state.artists.map(eachArtist => {
       if(eachArtist.id == artist.id){
         return artist
@@ -355,6 +362,43 @@ class App extends React.Component {
       this.props.history.push('/settings')
       alert("Artist Information Succesfully Updated")
     })
+  }
+
+  createPiece = (piece) => {
+    // don't forget to add: validation that there are no duplicate piece submittions (title can't be taken)
+    fetch('http://localhost:3000/pieces', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(piece)
+    })
+    .then(res => res.json())
+    .then(json => {
+
+      // **FIX LOGIC HERE to update festival's pieces
+      let festivals = this.state.festivals.map(festival => {
+        if(festival.id == json.festival_id){
+          festival.pieces = [...festival.pieces, json]
+          return festival
+        }
+        return festival
+      })
+
+      this.setState({
+        pieces: [...this.state.pieces, json],
+        festivals
+      })
+      this.props.history.push('/upcomingfestivals')
+      alert("Your piece has been submitted successfully.")
+    })
+  }
+
+  handleViewFestival = (e, festival) => {
+    this.setState({
+      currentViewFestival: festival
+    })
+    this.handleMenuSelection(e, "festivalapplication")
   }
 
   handleLogout = () => {
@@ -383,6 +427,7 @@ class App extends React.Component {
         <Route path="/registerartist" render={this.renderRegisterArtist} />
         <Route path="/registeradmin" render={this.renderRegisterAdmin} />
         <Route path="/artists/" render={this.renderViewArtist} />
+        <Route path="/festivalapplication" render={this.renderFestivalApplication} />
         <Route component={NotFound}/>
       </Switch>
     </div>
