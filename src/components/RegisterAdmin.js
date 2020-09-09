@@ -15,10 +15,10 @@ export default class RegisterAdmin extends React.Component {
         return(
             <Form onSubmit={(e) => this.handleSumbit(e)}>
                 <label>Your Name</label>
-                <Input name="name" placeholder="Your Name" value={this.state.name} type="text" onChange={this.handleOnChange}/>
+                <Input name="name" placeholder="Your Name" value={this.state.name} type="text" readOnly/>
                 <br></br>
                 <label>Username</label>
-                <Input name="username" placeholder="Username" value={this.state.username} type="text" maxlength="20" onChange={this.handleOnChange}/>
+                <Input name="username" placeholder="Username" value={this.state.username} type="text" maxlength="20" readOnly/>
                 <br></br>
                 <label>Position Title</label>
                 <Input name="title" placeholder="Position Title" type="text" maxlength="100" onChange={this.handleOnChange}/>
@@ -41,13 +41,19 @@ export default class RegisterAdmin extends React.Component {
 
     handleSumbit = (e) => {
         e.preventDefault()
-        let {user_id, title, authorization_code} = this.state
-        let admin = {
-            user_id,
-            title,
-            authorization_code
+
+        if(this.state.authorization_code && this.state.title){
+            let {user_id, title, authorization_code} = this.state
+            let admin = {
+                user_id,
+                title,
+                authorization_code
+            }
+            this.props.createAdmin(admin)
+        }else{
+            alert("Must include title and authorization code to register.")
         }
-        this.props.createAdmin(admin)
+
     }
 
     render() {

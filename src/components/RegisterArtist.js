@@ -27,7 +27,7 @@ export default class RegisterArtist extends React.Component {
                 <Input name="bio" value={this.state.bio ? this.state.bio : ""} placeholder="Bio (500 characters or less)" type="text" maxLength="500" onChange={this.handleOnChange}/>
                 <br></br>
                 <label>Headshot</label>
-                <Input name="headshot" placeholder="Attach Your Headshot" type="file" onChange={this.handleOnChange}/>
+                <Input name="photo" value={this.state.photo ? this.state.photo : "" } placeholder="Attach Your Headshot" type="text" onChange={this.handleOnChange}/>
               
                 {/* 
                 <label>Headshot</label>
@@ -43,19 +43,19 @@ export default class RegisterArtist extends React.Component {
 
     handleOnChange = (e) => {
         
-        if(e.target.name === 'headshot'){
-            debugger
-            this.setState({
-                [e.target.name]: e.target.files[0]
-            })
-        }
-        else{
+        // if(e.target.name === 'headshot'){
+        //     debugger
+        //     this.setState({
+        //         [e.target.name]: e.target.files[0]
+        //     })
+        // }
+        // else{
             this.setState({
                 [e.target.name]: e.target.value
             })
-        }
+        // }
 
-        console.log(this.state)
+        // console.log(this.state)
     }
 
     handleSumbit = (e) => {
@@ -63,14 +63,15 @@ export default class RegisterArtist extends React.Component {
 
         // check to be sure none are empty
         // if empty, alert and don't fetch
-        if(this.state.user_id && this.state.company_title && this.state.bio && this.state.headshot){
-            let {user_id, company_title, bio, headshot} = this.state
+        if(this.state.user_id && this.state.company_title && this.state.bio && this.state.photo){
+            let {user_id, company_title, bio, photo} = this.state
             let artist = {
                 user_id,
                 company_title,
-                bio
+                bio,
+                photo
             }
-            this.props.createArtist(e, artist, headshot)
+            this.props.createArtist(e, artist)
         }
         else{
             alert("Must include company title, bio, and headshot.")
@@ -81,7 +82,7 @@ export default class RegisterArtist extends React.Component {
         e.preventDefault()
         // check to be sure none are empty
         // if empty, alert and don't fetch
-        if(this.state.user_id && this.state.company_title && this.state.bio && this.state.headshot){
+        if(this.state.user_id && this.state.company_title && this.state.bio && this.state.photo){
                 let artist = {
                 ...this.state,
                 id: this.props.artist.id

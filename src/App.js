@@ -288,28 +288,29 @@ class App extends React.Component {
     })
   }
 
-  createArtist = (e, artist, headshot) => {
+  createArtist = (e, artist) => {
     // fetch and handle bad data error
     // update state with information and "artist=true" ?
-    debugger
+    // debugger
 
-    let formData = new FormData();
-    formData.append("user_id", artist.user_id)
-    formData.append("company_title", artist.company_title)
-    formData.append("bio", artist.bio)
-    formData.append("headshot", headshot)
+    // let formData = new FormData();
+    // formData.append("user_id", artist.user_id)
+    // formData.append("company_title", artist.company_title)
+    // formData.append("bio", artist.bio)
+    // formData.append("headshot", headshot)
 
     fetch('http://localhost:3000/artists', {
       method: 'POST',
       headers: {
+        "Content-Type": "application/json"
       },
-      body: formData
+      body: JSON.stringify(artist)
     })
     .then(res => res.json())
     .then(json => {
       this.setState({
         artist: json,
-        artists: this.state.artists.push(json)
+        artists: [...this.state.artists, json]
       })
       this.props.history.push('/settings')
       alert("Successfully registered as an Artist")
