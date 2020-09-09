@@ -11,9 +11,21 @@ export default class RegisterArtist extends React.Component {
         // headshot: null
     }
 
+    generateHeadshotButton = () => {
+        if(this.state.id){
+            return (<div>
+                        <img src={this.props.artist.photo} alt="Your Headshot" height="100px" />
+                        <br></br>
+                    </div>
+            )
+        } else{
+            return <Input name="headshot" placeholder="Attach Your Headshot" type="file" onChange={this.handleOnChange}/>
+        }
+    }
+
     generateForm = () => {
         return(
-            <Form onSubmit={(e) => {Object.keys(this.props.artist).length === 0 ? this.handleSumbit(e) : this.handleUpdate(e) }}>
+            <Form onSubmit={(e) => { Object.keys(this.props.artist).length === 0 ? this.handleSumbit(e) : this.handleUpdate(e) }}>
                 <label>Your Name</label>
                 <Input name="name" placeholder="Your Name" value={this.props.user.name} readOnly type="text"/>
                 <br></br>
@@ -27,13 +39,7 @@ export default class RegisterArtist extends React.Component {
                 <Input name="bio" value={this.state.bio ? this.state.bio : ""} placeholder="Bio (500 characters or less)" type="text" maxLength="500" onChange={this.handleOnChange}/>
                 <br></br>
                 <label>Headshot</label>
-                <Input name="headshot" placeholder="Attach Your Headshot" type="file" onChange={this.handleOnChange}/>
-              
-                {/* 
-                <label>Headshot</label>
-                <Input name="photo" value={this.state.photo ? this.state.photo : ""} placeholder="Attach Your Headshot" type="text" onChange={this.handleOnChange}/>
-                 */}
-
+                {this.generateHeadshotButton()}
                 <br></br>
                 <Button className="btn-round" variant='secondary' type="submit">Submit</Button>
                 <Button className="btn-round" variant='secondary' onClick={(e) => this.props.handleMenuSelection(e, 'settings')}>Back</Button>
@@ -44,7 +50,7 @@ export default class RegisterArtist extends React.Component {
     handleOnChange = (e) => {
         
         if(e.target.name === 'headshot'){
-            debugger
+            // debugger
             this.setState({
                 [e.target.name]: e.target.files[0]
             })

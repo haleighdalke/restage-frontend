@@ -291,7 +291,7 @@ class App extends React.Component {
   createArtist = (e, artist, headshot) => {
     // fetch and handle bad data error
     // update state with information and "artist=true" ?
-    debugger
+    // debugger
 
     let formData = new FormData();
     formData.append("user_id", artist.user_id)
@@ -309,7 +309,7 @@ class App extends React.Component {
     .then(json => {
       this.setState({
         artist: json,
-        artists: this.state.artists.push(json)
+        artists: [...this.state.artists, json]
       })
       this.props.history.push('/settings')
       alert("Successfully registered as an Artist")
