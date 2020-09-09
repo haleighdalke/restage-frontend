@@ -293,9 +293,11 @@ class App extends React.Component {
     // update state with information and "artist=true" ?
     debugger
 
-    const formData = new FormData();
-    formData.append("artist", JSON.stringify(artist))
-    formData.append("headshot", e.target[4].value)
+    let formData = new FormData();
+    formData.append("user_id", artist.user_id)
+    formData.append("company_title", artist.company_title)
+    formData.append("bio", artist.bio)
+    formData.append("headshot", headshot)
 
     fetch('http://localhost:3000/artists', {
       method: 'POST',

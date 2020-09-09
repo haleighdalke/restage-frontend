@@ -15,19 +15,19 @@ export default class RegisterArtist extends React.Component {
         return(
             <Form onSubmit={(e) => {Object.keys(this.props.artist).length === 0 ? this.handleSumbit(e) : this.handleUpdate(e) }}>
                 <label>Your Name</label>
-                <Input name="name" placeholder="Your Name" value={this.props.user.name} type="text"/>
+                <Input name="name" placeholder="Your Name" value={this.props.user.name} readOnly type="text"/>
                 <br></br>
                 <label>Username</label>
-                <Input name="username" placeholder="Username" value={this.props.user.username} type="text" maxlength="20"/>
+                <Input name="username" placeholder="Username" value={this.props.user.username} readOnly type="text"/>
                 <br></br>
                 <label>Company Title</label>
-                <Input name="company_title" value={this.state.company_title ? this.state.company_title : ""} placeholder="Your Company Title" type="text" maxlength="100" onChange={this.handleOnChange}/>
+                <Input name="company_title" value={this.state.company_title ? this.state.company_title : ""} placeholder="Your Company Title" type="text" maxLength="100" onChange={this.handleOnChange}/>
                 <br></br>
                 <label>Bio</label>
-                <Input name="bio" value={this.state.bio ? this.state.bio : ""} placeholder="Bio (500 characters or less)" type="text" maxlength="500" onChange={this.handleOnChange}/>
+                <Input name="bio" value={this.state.bio ? this.state.bio : ""} placeholder="Bio (500 characters or less)" type="text" maxLength="500" onChange={this.handleOnChange}/>
                 <br></br>
                 <label>Headshot</label>
-                <Input name="headshot" value={this.state.headshot ? this.state.headshot : ""} placeholder="Attach Your Headshot" type="file" onChange={this.handleOnChange}/>
+                <Input name="headshot" placeholder="Attach Your Headshot" type="file" onChange={this.handleOnChange}/>
               
                 {/* 
                 <label>Headshot</label>
@@ -42,9 +42,20 @@ export default class RegisterArtist extends React.Component {
     }
 
     handleOnChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
+        
+        if(e.target.name === 'headshot'){
+            debugger
+            this.setState({
+                [e.target.name]: e.target.files[0]
+            })
+        }
+        else{
+            this.setState({
+                [e.target.name]: e.target.value
+            })
+        }
+
+        console.log(this.state)
     }
 
     handleSumbit = (e) => {
