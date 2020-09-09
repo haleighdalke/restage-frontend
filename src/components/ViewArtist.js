@@ -18,15 +18,6 @@ export default class ViewArtist extends React.Component {
         // let upcomingFestivals = []
         let filteredPieces = this.props.pieces.filter(piece => piece.artist.id === artist.id)
 
-        // TRYING TO FILTER OUT DUPLICATE FESTIVALS STILL WORKING THRU
-        let temp = []
-        let uniqueFestivals = filteredPieces.filter(piece => {
-            if(!temp.includes(piece.festival.id)){
-                temp.push(piece.festival.id)
-                return piece.festival
-            }
-        })
-
                 // let dateArr = piece.festival.release_date.split("-").map(day => parseInt(day))
                 // let currentDate = new Date(dateArr[0], dateArr[1], dateArr[2])
                 // if(currentDate <= today){
@@ -40,9 +31,10 @@ export default class ViewArtist extends React.Component {
         // console.log(currentFestivals)
         // console.log(upcomingFestivals)
 
-        return uniqueFestivals.map(festival => {
+        return filteredPieces.map(piece => {
+            let festival = piece.festival
             return(
-            <tr key={festival.id}>
+            <tr key={piece.id} className="artist-table-row" onClick={(e) => this.props.handleMenuSelection(e, "home")}>
                 <td>
                     "{festival.title}" coming {this.getReleaseDate(festival.release_date)}
                 </td>
@@ -59,10 +51,11 @@ export default class ViewArtist extends React.Component {
                         <img src={artist.photo} alt={artist.title} height="500px"/>
                     </div>
                     <div className="artist-info">
-                        <h1>{artist.title}</h1>
-                        <h3>{artist.bio}</h3>
-                        <h2>Festivals: </h2>
-                        <table>
+                        <h1>{artist.company_title}</h1>
+                        <h5>{artist.bio}</h5>
+                        <br></br>
+                        <h2>Upcoming Festivals:</h2>
+                        <table className="artist-table">
                             <tbody>
                                 {this.generateFestivals()}
                             </tbody>

@@ -87,7 +87,7 @@ class App extends React.Component {
   }
 
   renderViewArtist = () => {
-    return <ViewArtist artist={this.state.currentViewArtist} festivals={this.state.festivals} pieces={this.state.pieces}/>
+    return <ViewArtist artist={this.state.currentViewArtist} festivals={this.state.festivals} pieces={this.state.pieces} handleMenuSelection={this.handleMenuSelection}/>
   }
 
   viewArtist = (artist) => {
@@ -171,10 +171,12 @@ class App extends React.Component {
 
   // NAVIGATION
   handleMenuSelection = (e, selection) => {
+
+    this.handleMenuSelectionCSS(selection)
+
     switch (selection){
       case 'home':
         this.props.history.push('/home')
-        // e.target.style.color = "#fff"
         break
       case 'artists':
         this.props.history.push('/artists')
@@ -196,6 +198,22 @@ class App extends React.Component {
       //   this.props.history.push('/home')
     }
     this.closeNav()
+  }
+
+  handleMenuSelectionCSS = (selection) => {
+
+    if(selection == "home" || selection == "artists" || selection == "upcomingfestivals" || selection == "settings"){
+
+      let allLinks = document.querySelectorAll(".sidebar a")
+      allLinks.forEach(link => {
+        if(link.className !== "closebtn"){
+          link.style.color = "#3B945E"
+        }
+      })
+      
+      let item = document.getElementById(`nav-${selection}`)
+      item.style.color = "#f2f2f2"
+    }
   }
 
   // FETCHES

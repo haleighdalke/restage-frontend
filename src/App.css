@@ -144,7 +144,7 @@ html, body {
 
 /* When you mouse over the navigation links, change their color */
 .sidebar a:hover {
-  color: rgb(59,148,94, 0.5);
+  color: rgb(59,148,94, 0.5) !important;
 }
 
 /* Position and style the close button (top right corner) */
@@ -373,15 +373,41 @@ button.btn-secondary:hover {
   margin-top: 10%;
   margin-bottom: 10%;
   padding: 30px;
-  background-color: rgb(242,242,242,0.05);
+  background-color: rgb(242,242,242,0.1);
 }
 
 /* View One Artist  */
 
 
 .view-artist {
-  margin: 20px;
+  display: flex;
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 100%;
 }
 
 .artist-photo {
+  /* display: flex; */
+}
+
+.artist-info {
+  margin-left: 100px;
+  padding: 20px;
+  height: 500px;
+  width: 100%;
+  border: medium solid #F2F2F2;
+  background-color: rgb(242,242,242,0.1);
+  align-items: center;
+}
+
+.artist-table {
+  width: 60%;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.artist-table-row:hover {
+  cursor: pointer;
+  color: #3B945E;
+  text-emphasis: bold;
 }

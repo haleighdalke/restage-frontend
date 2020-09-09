@@ -9,10 +9,10 @@ const NavHeader = ({handleMenuSelection, openNav, closeNav}) => {
                 <a href="javascript:void(0)" className="closebtn" onClick={() => closeNav()}>&#9776;</a>
                 <br></br>
                 <br></br>
-                <a href="javascript:void(0)" onClick={(e) => handleMenuSelection(e, "home")}>Home</a>
-                <a href="javascript:void(0)" onClick={(e) => handleMenuSelection(e, "artists")}>Artists</a>
-                <a href="javascript:void(0)" onClick={(e) => handleMenuSelection(e, "upcomingfestivals")}>Upcoming Festivals</a>
-                <a href="javascript:void(0)" onClick={(e) => handleMenuSelection(e, "settings")}>My Settings</a>
+                <a href="javascript:void(0)" id="nav-home" onClick={(e) => handleMenuSelection(e, "home")} style={{color: "#f2f2f2"}}>Home</a>
+                <a href="javascript:void(0)" id="nav-artists" onClick={(e) => handleMenuSelection(e, "artists")}>Artists</a>
+                <a href="javascript:void(0)" id="nav-upcomingfestivals" onClick={(e) => handleMenuSelection(e, "upcomingfestivals")}>Upcoming Festivals</a>
+                <a href="javascript:void(0)" id="nav-settings" onClick={(e) => handleMenuSelection(e, "settings")}>My Settings</a>
             </div>
             <div id="main">
                 <img src={logo} alt="restage" id="logo-green"/>
