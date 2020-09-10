@@ -374,8 +374,8 @@ class App extends React.Component {
     formData.append("title", piece.title)
     formData.append("image", piece.image)
     formData.append("description", piece.description)
-    formData.append("short_video", piece.short_video)
-    formData.append("long_video", piece.long_video)
+    formData.append("trailer_id", piece.trailer_id)
+    formData.append("full_video_id", piece.full_video_id)
 
     fetch('http://localhost:3000/pieces', {
       method: "POST",
@@ -384,9 +384,11 @@ class App extends React.Component {
     })
     .then(res => res.json())
     .then(json => {
+
+      debugger
       // **FIX LOGIC HERE to update festival's pieces
       let festivals = this.state.festivals.map(festival => {
-        if(festival.id ==- json.festival.id){
+        if(festival.id == json.festival.id){
           festival.pieces = [...festival.pieces, json]
           return festival
         }
