@@ -19,7 +19,7 @@ export default class RegisterArtist extends React.Component {
                     </div>
             )
         } else{
-            return <Input name="headshot" placeholder="Attach Your Headshot" type="file" onChange={this.handleOnChange}/>
+            return <Input name="headshot" placeholder="Attach Your Headshot" type="file" accept="image/*" onChange={this.handleOnChange}/>
         }
     }
 

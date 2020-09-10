@@ -60,7 +60,7 @@ class App extends React.Component {
   }
 
   renderUpcomingFestivals = () => {
-    return <UpcomingFestivals festivals={this.state.festivals} handleViewFestival={this.handleViewFestival} artist={this.state.artist}/>
+    return <UpcomingFestivals festivals={this.state.festivals} pieces={this.state.pieces} handleViewFestival={this.handleViewFestival} artist={this.state.artist}/>
   }
 
   renderSettings = () => {
@@ -367,24 +367,32 @@ class App extends React.Component {
   }
 
   createPiece = (piece) => {
-    // don't forget to add: validation that there are no duplicate piece submittions (title can't be taken)
+
+    let formData = new FormData();
+    formData.append("festival_id", piece.festival_id)
+    formData.append("artist_id", piece.artist_id)
+    formData.append("title", piece.title)
+    formData.append("image", piece.image)
+    formData.append("description", piece.description)
+    formData.append("short_video", piece.short_video)
+    formData.append("long_video", piece.long_video)
+
     fetch('http://localhost:3000/pieces', {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(piece)
+      headers: {},
+      body: formData
     })
     .then(res => res.json())
     .then(json => {
-
       // **FIX LOGIC HERE to update festival's pieces
       let festivals = this.state.festivals.map(festival => {
-        if(festival.id == json.festival_id){
+        if(festival.id ==- json.festival.id){
           festival.pieces = [...festival.pieces, json]
           return festival
         }
-        return festival
+        else{
+          return festival
+        }
       })
 
       this.setState({
