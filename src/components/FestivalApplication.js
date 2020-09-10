@@ -35,7 +35,6 @@ export default class FestivalApplication extends React.Component {
     handleOnChange = (e) => {
         let name = e.target.name
         if(name === 'image' || name === 'short_video' || name === 'long_video'){
-            debugger
             this.setState({
                 [name]: e.target.files[0]
             })
