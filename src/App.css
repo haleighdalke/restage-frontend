@@ -367,9 +367,9 @@ button.btn-secondary:hover {
   border-color: rgb(59,148,94);
 }
 
-.settings-register{
+/* .settings-register{
   
-}
+} */
 
 /* Upcoming Festivals Page  */
 
@@ -422,9 +422,9 @@ button.btn-secondary:hover {
   width: 100%;
 }
 
-.artist-photo {
+/* .artist-photo { */
   /* display: flex; */
-}
+/* } */ 
 
 .artist-info {
   margin-left: 100px;
