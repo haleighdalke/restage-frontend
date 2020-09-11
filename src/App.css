@@ -56,6 +56,8 @@ html, body {
 .page-header-landing { 
   height: 100%; 
   background-color: #182628;
+  /* background-image: url("./assets/img/dancing_figures.png");
+  background-repeat: repeat; */
 }
 
 .landing-logo {
@@ -176,6 +178,27 @@ html, body {
   color: rgb(242,242,242,0.5);
 }
 
+/* Icons for sidebar */
+.social-icons {
+  display: flex;
+  width: 60%;
+  margin-top: 100%;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.social-icons img {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+}
+
+.social-icons img:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
   transition: margin-left .5s; /* If you want a transition effect */
@@ -277,17 +300,21 @@ html, body {
   -o-transform: rotate(-60deg);
   -webkit-transform: rotate(-60deg);
   visibility: visible;
-  filter: grayscale(100%);
+  filter: grayscale(70%);
   opacity: 0.85;
   font-weight: bold;
   text-shadow: 0.5px 0.5px #333;
+
+  background-color: #3B945E;
+  background-blend-mode: luminosity;
 }
 
 .hexagon-image:hover {
   cursor: pointer;
   opacity: 1;
+  background-blend-mode: normal;
   filter: none;
-  transition: 1s ease;
+  transition: 1s ease !important;
   color: rgb(242,242,242,0);
   text-shadow: 2px 2px rgb(242,242,242,0);
 }

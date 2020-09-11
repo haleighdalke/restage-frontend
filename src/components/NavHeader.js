@@ -1,5 +1,9 @@
 import React from "react";
 import logo from '../assets/img/restage_logo_green.png'
+import facebook from '../assets/img/facebook.png'
+import instagram from '../assets/img/instagram.png'
+import twitter from '../assets/img/twitter.png'
+
 
 const NavHeader = ({handleMenuSelection, openNav, closeNav}) => {
 
@@ -13,6 +17,11 @@ const NavHeader = ({handleMenuSelection, openNav, closeNav}) => {
                 <a href="javascript:void(0)" id="nav-artists" onClick={(e) => handleMenuSelection(e, "artists")}>Artists</a>
                 <a href="javascript:void(0)" id="nav-upcomingfestivals" onClick={(e) => handleMenuSelection(e, "upcomingfestivals")}>Upcoming Festivals</a>
                 <a href="javascript:void(0)" id="nav-settings" onClick={(e) => handleMenuSelection(e, "settings")}>My Settings</a>
+                <div className="social-icons">
+                    <img src={facebook} alt="facebook" />
+                    <img src={instagram} alt="instagram" />
+                    <img src={twitter} alt="twitter" />
+                </div>
             </div>
             <div id="main">
                 <img src={logo} alt="restage" id="logo-green"/>
