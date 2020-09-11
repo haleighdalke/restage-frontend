@@ -20,10 +20,10 @@ export default class RegisterAdmin extends React.Component {
                 <Input name="username" placeholder="Username" value={this.state.username} type="text" readOnly/>
                 <br></br>
                 <label>Position Title</label>
-                <Input name="title" value={this.props.admin.title ? this.props.admin.title : ""} placeholder="Position Title" type="text" maxLength="100" onChange={this.handleOnChange}/>
+                <Input name="title" value={this.state.title ? this.state.title : ""} placeholder="Position Title" type="text" maxLength="100" onChange={this.handleOnChange}/>
                 <br></br>
                 <label>Authorization Code</label>
-                <Input name="authorization_code" value={this.props.admin.authorization_code ? this.props.admin.authorization_code : ""} placeholder="Authorization Code" type="password" maxLength="100" onChange={this.handleOnChange}/>
+                <Input name="authorization_code" value={this.state.authorization_code ? this.state.authorization_code : ""} placeholder="Authorization Code" type="password" maxLength="100" onChange={this.handleOnChange}/>
                 <br></br>
                 {this.props.admin.title ? false : <Button className="btn-round" variant='secondary' type="submit">Submit</Button> }
                 <Button className="btn-round" variant='secondary' onClick={(e) => this.props.handleMenuSelection(e, 'settings')}>Back</Button>
