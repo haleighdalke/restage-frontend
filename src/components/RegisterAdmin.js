@@ -7,8 +7,7 @@ export default class RegisterAdmin extends React.Component {
         user_id: this.props.user.id,
         name: this.props.user.name,
         username: this.props.user.username,
-        title: "",
-        authorization_code: ""
+        ...this.props.admin
     }
 
     generateForm = () => {
@@ -18,15 +17,15 @@ export default class RegisterAdmin extends React.Component {
                 <Input name="name" placeholder="Your Name" value={this.state.name} type="text" readOnly/>
                 <br></br>
                 <label>Username</label>
-                <Input name="username" placeholder="Username" value={this.state.username} type="text" maxlength="20" readOnly/>
+                <Input name="username" placeholder="Username" value={this.state.username} type="text" readOnly/>
                 <br></br>
                 <label>Position Title</label>
-                <Input name="title" placeholder="Position Title" type="text" maxlength="100" onChange={this.handleOnChange}/>
+                <Input name="title" value={this.props.admin.title ? this.props.admin.title : ""} placeholder="Position Title" type="text" maxLength="100" onChange={this.handleOnChange}/>
                 <br></br>
                 <label>Authorization Code</label>
-                <Input name="authorization_code" placeholder="Authorization Code" type="password" maxlength="100" onChange={this.handleOnChange}/>
+                <Input name="authorization_code" value={this.props.admin.authorization_code ? this.props.admin.authorization_code : ""} placeholder="Authorization Code" type="password" maxLength="100" onChange={this.handleOnChange}/>
                 <br></br>
-                <Button className="btn-round" variant='secondary' type="submit">Submit</Button>
+                {this.props.admin.title ? false : <Button className="btn-round" variant='secondary' type="submit">Submit</Button> }
                 <Button className="btn-round" variant='secondary' onClick={(e) => this.props.handleMenuSelection(e, 'settings')}>Back</Button>
             </Form>
         )

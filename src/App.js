@@ -84,7 +84,7 @@ class App extends React.Component {
   }
 
   renderRegisterAdmin = () => {
-    return <RegisterAdmin user={this.state.user} createAdmin={this.createAdmin} handleMenuSelection={this.handleMenuSelection}/>
+    return <RegisterAdmin user={this.state.user} admin={this.state.admin} createAdmin={this.createAdmin} handleMenuSelection={this.handleMenuSelection}/>
   }
 
   renderViewArtist = () => {
@@ -106,7 +106,6 @@ class App extends React.Component {
     this.setState({
       currentFestival: festival
     })
-    // document.querySelector(".home-page").innerHTML = ""
     this.props.history.push(`/festivals/${festival.id}`)
   }
 
@@ -201,9 +200,6 @@ class App extends React.Component {
       case 'festivalapplication':
         this.props.history.push('/festivalapplication')
         break
-      // end
-      // default:
-      //   this.props.history.push('/home')
     }
     this.closeNav()
   }
@@ -211,14 +207,12 @@ class App extends React.Component {
   handleMenuSelectionCSS = (selection) => {
 
     if(selection == "home" || selection == "artists" || selection == "upcomingfestivals" || selection == "settings"){
-
       let allLinks = document.querySelectorAll(".sidebar a")
       allLinks.forEach(link => {
         if(link.className !== "closebtn"){
           link.style.color = "#3B945E"
         }
       })
-      
       let item = document.getElementById(`nav-${selection}`)
       item.style.color = "#f2f2f2"
     }
@@ -231,8 +225,7 @@ class App extends React.Component {
     .then(json => {
       this.setState({
         festivals: json
-      })
-    })
+      })})
   }
 
   getAllArtists = () => {
@@ -241,8 +234,7 @@ class App extends React.Component {
     .then(json => {
       this.setState({
         artists: json
-      })    
-    })
+      })})
   }
 
   getAllPieces = () => {
@@ -251,20 +243,16 @@ class App extends React.Component {
     .then(json => {
       this.setState({
         pieces: json
-      })
-    })
+      })})
   }
 
   // ADDITIONAL METHODS
-
-  // Set the width of the sidebar to 250px and the left margin of the page content to 250px
   openNav = () => {
     document.getElementById("mySidebar").style.width = "28%"
     document.getElementById("main").style.marginLeft = "28%"
     document.querySelector(".openbtn").style.display = "none"
   }
 
-  // Set the width of the sidebar to 0 and the left margin of the page content to 0
   closeNav = () => {
     document.getElementById("mySidebar").style.width = "0"
     document.getElementById("main").style.marginLeft = "0"
@@ -289,10 +277,6 @@ class App extends React.Component {
   }
 
   createArtist = (e, artist, headshot) => {
-    // fetch and handle bad data error
-    // update state with information and "artist=true" ?
-    // debugger
-
     let formData = new FormData();
     formData.append("user_id", artist.user_id)
     formData.append("company_title", artist.company_title)
@@ -314,7 +298,6 @@ class App extends React.Component {
       this.props.history.push('/settings')
       alert("Successfully registered as an Artist")
     })
-
   }
 
   createAdmin = (admin) => {
@@ -341,6 +324,8 @@ class App extends React.Component {
   }
 
   updateArtist = (artist) => {
+
+    // optimistic rendering
     let artists = this.state.artists.map(eachArtist => {
       if(eachArtist.id == artist.id){
         return artist
@@ -367,7 +352,6 @@ class App extends React.Component {
   }
 
   createPiece = (piece) => {
-
     let formData = new FormData();
     formData.append("festival_id", piece.festival_id)
     formData.append("artist_id", piece.artist_id)
@@ -384,9 +368,6 @@ class App extends React.Component {
     })
     .then(res => res.json())
     .then(json => {
-
-      debugger
-      // **FIX LOGIC HERE to update festival's pieces
       let festivals = this.state.festivals.map(festival => {
         if(festival.id == json.festival.id){
           festival.pieces = [...festival.pieces, json]
@@ -396,7 +377,6 @@ class App extends React.Component {
           return festival
         }
       })
-
       this.setState({
         pieces: [...this.state.pieces, json],
         festivals

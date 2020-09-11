@@ -58,7 +58,7 @@ export default class Settings extends React.Component {
                     <br></br>
                     <div className="settings-register">
                         {Object.keys(this.props.artist).length ? this.renderArtistButton("Update Artist Info") : this.renderArtistButton()}
-                        {Object.keys(this.props.admin).length ? this.renderAdminButton("Update Admin Info") : this.renderAdminButton()}
+                        {Object.keys(this.props.admin).length ? this.renderAdminButton("View Admin Info") : this.renderAdminButton()}
                     </div>
                     <br></br>
                     <Button className="btn-round" variant='secondary' onClick={this.props.handleLogout}>Logout</Button>
