@@ -12,7 +12,8 @@ A virtual platform for independent dance makers and artists to submit video foot
 ## General Info
 This project was created by Haleigh Dalke for the purpose of showcasing a full stack application in Rails and React. Mod5 Final Project at Flatiron School, presented on September 11, 2020.
 
-Repo link: https://github.com/haleighdalke/restage-frontend
+Repo link backend: https://github.com/haleighdalke/restage-backend
+Repo link frontend: https://github.com/haleighdalke/restage-frontend
 
 ## Technologies
 * JavaScript
