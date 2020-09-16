@@ -1,68 +1,54 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Restage (backend) - Full-stack Video Viewing App
+A virtual platform for independent dance makers and artists to submit video footage of their work, for respected professionals to curate “festivals,” and for users to donate towards or purchase viewing “tickets” to these festival to watch current, innovative work.
 
-## Available Scripts
+## Table of Contents
+* General Info
+* Technologies
+* Setup
+* Features
+* Inspiration
+* Contributions
 
-In the project directory, you can run:
+## General Info
+This project was created by Haleigh Dalke for the purpose of showcasing a full stack application in Rails and React. Mod5 Final Project at Flatiron School, presented on September 11, 2020.
 
-### `yarn start`
+Repo link: https://github.com/haleighdalke/restage-frontend
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Technologies
+* JavaScript
+* React 6.14.8
+* Reactstrap
+* React Bootstrap
+* JWT
+* YouTube API
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Setup
+To run this project, please first follow directions for restage-backend setup, then run the following in your terminal:
+```
+$ cd ./restage-frontend    // be sure you're in this file directory
+$ npm install              // install the packages
+$ npm start                // launch the server (must be running on http://localhost:3001/)
+```
+Once the server is up and running, create an account and get started!
 
-### `yarn test`
+## Features
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* Securely login as a new user or returning user
+* View Current Festivals as a carousel
+    - **View Festival** (view all pieces--videos, titles, descriptions--of a festival)
+* Navigate to:
+    - **Home** (all current festivals)
+    - **Artists** (view artists' headshots and click to view company name, bio, and upcoming festivals)
+    - **Upcoming Festivals** (view photos, titles, and descriptions for upcoming festivals. Apply to a festival if registered as an artist.)
+    - **My Settings** (edit user info, register as an artist, edit artist info, register as an admin, logout)
 
-### `yarn build`
+## Inspiration
+With the onset of COVID-19, I noticed a huge shift in the dance community. Like many other fields, dancers and choreographers put their rehearsals on pause, cancelled performances, and transitioned to online classes. Life was haulted, and artists had more desire than ever to connect and create work. Unfortunately, the dance community is not centralized or unionized, so there was no place for dancers to turn to showcase their work. I decided to create an app that I would not only use myself, but also offer to my friends running large dance institutions and creating project-based work in NYC. A spot where artists could easily share their projects, and (following the same "donation" model many of these showcases use in-person) allow viewers to donate towards access to watch full length dance pieces. I hope to continue building this app out to meet all desired functionality, and hosting it so the community can have a free resource for watching dance.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Contributions
+[ ] Haleigh Dalke
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+If you want to contribute to my project, please see our CODE_OF_CONDUCT.md file for direction.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Liscence
+Refer to LICENSE file.
