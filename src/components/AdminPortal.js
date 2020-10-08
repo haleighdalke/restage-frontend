@@ -9,25 +9,29 @@ export default class AdminPortal extends React.Component {
     }
 
     toggle = tab => {
-      if(activeTab !== tab) this.setState({activeTab: tab});
+      if(this.state.activeTab !== tab) {
+          this.setState({
+              activeTab: tab
+            })
+        }
     }
   
 
-    handleOnChange = (e) => {
-        console.log(e.target)
-        this.setState({
-            [e.target.name]: e.target.value
-        })
-    }
+    // handleOnChange = (e) => {
+    //     console.log(e.target)
+    //     this.setState({
+    //         [e.target.name]: e.target.value
+    //     })
+    // }
 
-    handleSumbit = (e) => {
-        e.preventDefault()
-        let user = {
-            ...this.state,
-            id: this.props.user.id
-        }
-        this.props.updateUserInfo(user)
-    }
+    // handleSumbit = (e) => {
+    //     e.preventDefault()
+    //     let user = {
+    //         ...this.state,
+    //         id: this.props.user.id
+    //     }
+    //     this.props.updateUserInfo(user)
+    // }
 
     render() {
         return (
@@ -43,22 +47,22 @@ export default class AdminPortal extends React.Component {
       <Nav tabs>
         <NavItem>
           <NavLink
-            className={classnames({ active: activeTab === '1' })}
-            onClick={() => { toggle('1'); }}
+            className={{ active: this.state.activeTab === '1' }}
+            onClick={() => { this.toggle('1'); }}
           >
             Tab1
           </NavLink>
         </NavItem>
         <NavItem>
           <NavLink
-            className={classnames({ active: activeTab === '2' })}
-            onClick={() => { toggle('2'); }}
+            className={{ active: this.state.activeTab === '2' }}
+            onClick={() => { this.toggle('2'); }}
           >
             More Tabs
           </NavLink>
         </NavItem>
       </Nav>
-      <TabContent activeTab={activeTab}>
+      <TabContent activeTab={this.state.activeTab}>
         <TabPane tabId="1">
           <Row>
             <Col sm="12">
