@@ -104,7 +104,7 @@ export default class RegisterArtist extends React.Component {
             <div className="settings">
                 
                 <div className="settings-form">
-                    <h1>Register as an Artist</h1>
+                { Object.keys(this.props.artist).length === 0 ? <h1>Register as an Artist</h1> : <h1>Update Artist Info</h1> }
                     <br></br>
                     {this.generateForm()}
                 </div>

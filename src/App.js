@@ -318,7 +318,7 @@ class App extends React.Component {
         this.props.history.push('/settings')
         alert("Successfully registered as an Admin.")
       } else {
-        alert("This user is already associated with an Admin account.")
+        alert("Invalid authorization code.")
       }
     })
   }
