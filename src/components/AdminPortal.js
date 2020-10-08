@@ -1,35 +1,17 @@
 import React from 'react'
-import { Button, Form, Input, ButtonToggle} from "reactstrap";
+import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 
 export default class AdminPortal extends React.Component {
 
+
     state = {
-        name: this.props.user.name,
-        username: this.props.user.username
+        activeTab: '1'
     }
 
-    generateForm = () => {
-        return(
-            <Form onSubmit={(e) => this.handleSumbit(e)}>
-                <label>Your Name</label>
-                <Input name="name" placeholder="Your Name" value={this.state.name} type="text" onChange={this.handleOnChange}/>
-                <br></br>
-                <label>Username</label>
-                <Input name="username" placeholder="Username" value={this.state.username} type="text" maxlength="20" onChange={this.handleOnChange}/>
-                <br></br>
-                <Button className="btn-round" variant='secondary' type="submit">Update</Button>
-            </Form>
-        )
+    toggle = tab => {
+      if(activeTab !== tab) this.setState({activeTab: tab});
     }
-
-    renderArtistButton = (artistControl="Register as an Artist") => {
-        return <Button className="btn-round" variant='secondary' type="submit" onClick={(e) => this.props.handleMenuSelection(e, 'registerartist')}>{artistControl}</Button>
-    }
-
-    renderAdminButton = (adminControl="Register as an Admin") => {
-            return <Button className="btn-round" variant='secondary' type="submit" onClick={(e) => this.props.handleMenuSelection(e, 'registeradmin')}>{adminControl}</Button>
-    }
-
+  
 
     handleOnChange = (e) => {
         console.log(e.target)
@@ -51,18 +33,60 @@ export default class AdminPortal extends React.Component {
         return (
             <div className="settings">
                 
-                <div className="settings-form">
-                    <h1>Edit User Info</h1>
+                {/* <div className="settings-form">
+                    <h1>Admin Portal</h1>
                     <br></br>
-                    {this.generateForm()}
-                    <br></br>
-                    <div className="settings-register">
-                        {Object.keys(this.props.artist).length ? this.renderArtistButton("Update Artist Info") : this.renderArtistButton()}
-                        {Object.keys(this.props.admin).length ? this.renderAdminButton("View Admin Info") : this.renderAdminButton()}
-                    </div>
-                    <br></br>
-                    <Button className="btn-round" variant='secondary' onClick={this.props.handleLogout}>Logout</Button>
-                </div>
+                    <Button className="btn-round" variant='secondary' onClick={(e) => this.props.handleMenuSelection(e, 'settings')}>Back</Button>
+                </div> */}
+
+    <div>
+      <Nav tabs>
+        <NavItem>
+          <NavLink
+            className={classnames({ active: activeTab === '1' })}
+            onClick={() => { toggle('1'); }}
+          >
+            Tab1
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink
+            className={classnames({ active: activeTab === '2' })}
+            onClick={() => { toggle('2'); }}
+          >
+            More Tabs
+          </NavLink>
+        </NavItem>
+      </Nav>
+      <TabContent activeTab={activeTab}>
+        <TabPane tabId="1">
+          <Row>
+            <Col sm="12">
+              <h4>Tab 1 Contents</h4>
+            </Col>
+          </Row>
+        </TabPane>
+        <TabPane tabId="2">
+          <Row>
+            <Col sm="6">
+              <Card body>
+                <CardTitle>Special Title Treatment</CardTitle>
+                <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+                <Button>Go somewhere</Button>
+              </Card>
+            </Col>
+            <Col sm="6">
+              <Card body>
+                <CardTitle>Special Title Treatment</CardTitle>
+                <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+                <Button>Go somewhere</Button>
+              </Card>
+            </Col>
+          </Row>
+        </TabPane>
+      </TabContent>
+    </div>
+  
                 
             </div>
         )

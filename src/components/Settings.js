@@ -27,7 +27,14 @@ export default class Settings extends React.Component {
     }
 
     renderAdminButton = (adminControl="Register as an Admin") => {
-            return <Button className="btn-round" variant='secondary' type="submit" onClick={(e) => this.props.handleMenuSelection(e, 'registeradmin')}>{adminControl}</Button>
+        switch (adminControl){
+            case "Register as an Admin":
+                return <Button className="btn-round" variant='secondary' type="submit" onClick={(e) => this.props.handleMenuSelection(e, 'registeradmin')}>{adminControl}</Button>
+                break;
+            case "View Admin Portal":
+                return <Button className="btn-round" variant='secondary' type="submit" onClick={(e) => this.props.handleMenuSelection(e, 'adminportal')}>{adminControl}</Button>
+                break;
+        }
     }
 
 
@@ -58,7 +65,7 @@ export default class Settings extends React.Component {
                     <br></br>
                     <div className="settings-register">
                         {Object.keys(this.props.artist).length ? this.renderArtistButton("Update Artist Info") : this.renderArtistButton()}
-                        {Object.keys(this.props.admin).length ? this.renderAdminButton("View Admin Info") : this.renderAdminButton()}
+                        {Object.keys(this.props.admin).length ? this.renderAdminButton("View Admin Portal") : this.renderAdminButton()}
                     </div>
                     <br></br>
                     <Button className="btn-round" variant='secondary' onClick={this.props.handleLogout}>Logout</Button>
