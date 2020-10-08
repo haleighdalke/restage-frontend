@@ -15,6 +15,7 @@ import RegisterArtist from './components/RegisterArtist'
 import RegisterAdmin from './components/RegisterAdmin'
 import ViewArtist from './components/ViewArtist';
 import FestivalApplication from './components/FestivalApplication';
+import AdminPortal from './components/AdminPortal';
 
 class App extends React.Component {
 
@@ -93,6 +94,10 @@ class App extends React.Component {
 
   renderFestivalApplication = () => {
     return <FestivalApplication artist={this.state.artist} festival={this.state.currentViewFestival} createPiece={this.createPiece} handleMenuSelection={this.handleMenuSelection}/>
+  }
+
+  renderAdminPortal = () => {
+    return <AdminPortal user={this.state.user} admin={this.state.admin} createAdmin={this.createAdmin} handleMenuSelection={this.handleMenuSelection}/>
   }
 
   viewArtist = (artist) => {
@@ -199,6 +204,9 @@ class App extends React.Component {
         break
       case 'festivalapplication':
         this.props.history.push('/festivalapplication')
+        break
+      case 'adminportal':
+        this.props.history.push('/adminportal')
         break
     }
     this.closeNav()
@@ -420,6 +428,7 @@ class App extends React.Component {
         <Route path="/registeradmin" render={this.renderRegisterAdmin} />
         <Route path="/artists/" render={this.renderViewArtist} />
         <Route path="/festivalapplication" render={this.renderFestivalApplication} />
+        <Route path="/adminportal" render={this.renderAdminPortal}/>
         <Route component={NotFound}/>
       </Switch>
     </div>
