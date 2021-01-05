@@ -87,7 +87,7 @@ export default class RegisterArtist extends React.Component {
         e.preventDefault()
         // check to be sure none are empty
         // if empty, alert and don't fetch
-        if(this.state.user_id && this.state.company_title && this.state.bio && this.state.headshot){
+        if(!!this.state.user_id && !!this.state.company_title && !!this.state.bio){
                 let artist = {
                 ...this.state,
                 id: this.props.artist.id

@@ -30,8 +30,8 @@ export default class UpcomingFestivals extends React.Component {
         let even = true
 
         return this.props.festivals.map(festival => {
-
-            if(festival.release_date > today.toISOString().slice(0, 10)){
+            console.log(festival.release_date)
+            // if(festival.release_date > today.toISOString().slice(0, 10)){
                 if(even){
                     even = !even
                     return(
@@ -70,7 +70,7 @@ export default class UpcomingFestivals extends React.Component {
                     )
                 }
                 
-            }
+            // }
             
         })
     }

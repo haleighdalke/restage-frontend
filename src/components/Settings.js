@@ -32,7 +32,7 @@ export default class Settings extends React.Component {
                 return <Button className="btn-round" variant='secondary' type="submit" onClick={(e) => this.props.handleMenuSelection(e, 'registeradmin')}>{adminControl}</Button>
                 break;
             case "View Admin Portal":
-                return <Button className="btn-round" variant='secondary' type="submit" onClick={(e) => this.props.handleMenuSelection(e, 'adminportal')}>{adminControl}</Button>
+                return <Button className="btn-round" variant='secondary' type="submit" onClick={(e) => this.props.handleMenuSelection(e, 'registeradmin')}>{adminControl}</Button>
                 break;
         }
     }

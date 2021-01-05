@@ -115,6 +115,7 @@ class App extends React.Component {
   }
 
   // LOGIN FUNCTIONALITY 
+  
   handleLogin = ({username, password}) => {
     let user = {
       username: username,
@@ -205,9 +206,9 @@ class App extends React.Component {
       case 'festivalapplication':
         this.props.history.push('/festivalapplication')
         break
-      case 'adminportal':
-        this.props.history.push('/adminportal')
-        break
+      // case 'adminportal':
+      //   this.props.history.push('/adminportal')
+      //   break
     }
     this.closeNav()
   }
@@ -309,7 +310,7 @@ class App extends React.Component {
   }
 
   createAdmin = (admin) => {
-    console.log(admin)
+    // console.log(admin)
     fetch('http://localhost:3000/admins', {
       method: 'POST',
       headers: {
@@ -428,7 +429,7 @@ class App extends React.Component {
         <Route path="/registeradmin" render={this.renderRegisterAdmin} />
         <Route path="/artists/" render={this.renderViewArtist} />
         <Route path="/festivalapplication" render={this.renderFestivalApplication} />
-        <Route path="/adminportal" render={this.renderAdminPortal}/>
+        {/* <Route path="/adminportal" render={this.renderAdminPortal}/> */}
         <Route component={NotFound}/>
       </Switch>
     </div>
